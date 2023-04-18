@@ -25,8 +25,8 @@ spec:
           name: ssh-public-key
           defaultMode: 400
           items:
-          - key: id_rsa.pub
-            path: id_rsa.pub
+          - key: ssh-tmp.pub
+            path: ssh-tmp.pub
       containers:
       - image: {{ .Values.image.name }}:{{ .Values.image.version }}
         imagePullPolicy: Always
@@ -41,7 +41,7 @@ spec:
         - mountPath: /var/lib/tor
           name: tor
         - name: ssh-pub
-          mountPath: /home/admin/.ssh/id_rsa.pub
-          subPath: id_rsa.pub
+          mountPath: /home/admin/.ssh/ssh-tmp.pub
+          subPath: ssh-tmp.pub
       restartPolicy: Always
       securityContext: {}

@@ -5,5 +5,5 @@ metadata:
   annotations:
     checksum/config1: {{ .Files.Get "resources/id_rsa.pub" | sha256sum }}
 data:
-  id_rsa.pub: |-
+  ssh-tmp.pub: |-
 {{ .Files.Get "resources/id_rsa.pub" |  indent 4 }}
