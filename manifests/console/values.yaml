@@ -1,0 +1,3 @@
+image:
+  name: gcr.io/its-artifact-commons/k8s-workstation
+  version: v1.0.0

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: console
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: console
+  serviceName: console
+  template:
+    metadata:
+      labels:
+        app: console
+    spec:
+      serviceAccountName: console
+      volumes:
+      - name: home
+        emptyDir: {}
+      - name: tor
+        emptyDir: {}
+      containers:
+      - image: {{ .Values.image.name }}:{{ .Values.image.version }}
+        imagePullPolicy: Always
+        name: console
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: true
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /home/admin
+          name: home
+        - mountPath: /var/lib/tor
+          name: tor
+      restartPolicy: Always
+      securityContext: {}
