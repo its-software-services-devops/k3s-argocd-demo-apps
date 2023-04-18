@@ -10,8 +10,8 @@ loki-stack:
       lokiAddress: http://loki-log:3100/loki/api/v1/push
   loki:
     fullnameOverride: loki-log
-    image:
-      tag: 2.3.0
+    #image:
+    #  tag: 2.3.0
     persistence:
       enabled: false
     config:
@@ -20,7 +20,6 @@ loki-stack:
   grafana:
     enabled: true
     fullnameOverride: loki-log-grafana
-    #envFromSecret: google-oidc-secret
     envRenderSecret: {}
     image:
       tag: 8.5.13
