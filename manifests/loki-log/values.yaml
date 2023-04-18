@@ -1,0 +1,45 @@
+domain: ''
+
+loki-stack:
+  enabled: true
+
+  promtail:
+    fullnameOverride: promtail
+    config:
+      lokiAddress: http://loki-log:3100/loki/api/v1/push
+  loki:
+    fullnameOverride: loki-log
+    image:
+      tag: 2.3.0
+    persistence:
+      enabled: false
+    config:
+      #ruler:
+      #  storage:
+      #    type: local
+      #    local:
+      #      directory: /rules
+      #  rule_path: /tmp/scratch
+      #  alertmanager_url: http://alertmanager-main.monitoring.svc.cluster.local:9093
+      #  ring:
+      #    kvstore:
+      #      store: inmemory
+      #  enable_api: true
+    alerting_groups: []
+
+  grafana:
+    enabled: true
+    fullnameOverride: loki-log-grafana
+    #envFromSecret: google-oidc-secret
+    envRenderSecret: {}
+    image:
+      tag: 8.5.13
+    #grafana.ini:
+    #  server:
+    #    root_url: grafana-loki.rtarf-ml.its-software-services.com
+    grafana.ini:
+      log:
+        level: debug
+      #server:
+        #root_url: https://grafana-loki.rtarf-ml.its-software-services.com
+        #domain: grafana-loki.rtarf-ml.its-software-services.com
