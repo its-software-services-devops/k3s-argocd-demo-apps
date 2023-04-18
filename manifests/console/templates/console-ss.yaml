@@ -20,6 +20,13 @@ spec:
         emptyDir: {}
       - name: tor
         emptyDir: {}
+      - name: ssh-pub
+        configMap:
+          name: ssh-public-key
+          defaultMode: 400
+          items:
+          - key: id_rsa.pub
+            path: id_rsa.pub
       containers:
       - image: {{ .Values.image.name }}:{{ .Values.image.version }}
         imagePullPolicy: Always
@@ -33,5 +40,8 @@ spec:
           name: home
         - mountPath: /var/lib/tor
           name: tor
+        - name: ssh-pub
+          mountPath: /home/admin/.ssh/id_rsa.pub
+          subPath: id_rsa.pub
       restartPolicy: Always
       securityContext: {}
