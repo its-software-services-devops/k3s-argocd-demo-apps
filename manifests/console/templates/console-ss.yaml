@@ -20,13 +20,6 @@ spec:
         emptyDir: {}
       - name: tor
         emptyDir: {}
-      - name: ssh-pub
-        configMap:
-          name: ssh-public-key
-          defaultMode: 400
-          items:
-          - key: ssh-tmp.pub
-            path: ssh-tmp.pub
       containers:
       - image: {{ .Values.image.name }}:{{ .Values.image.version }}
         imagePullPolicy: Always
@@ -40,8 +33,5 @@ spec:
           name: home
         - mountPath: /var/lib/tor
           name: tor
-        - name: ssh-pub
-          mountPath: /home/admin/.ssh/ssh-tmp.pub
-          subPath: ssh-tmp.pub
       restartPolicy: Always
       securityContext: {}
