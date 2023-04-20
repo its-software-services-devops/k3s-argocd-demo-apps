@@ -1,3 +1,6 @@
 prometheus:
   enabled: true
   fullnameOverride: prometheus
+
+  prometheus-node-exporter:
+    hostRootFsMount: false
