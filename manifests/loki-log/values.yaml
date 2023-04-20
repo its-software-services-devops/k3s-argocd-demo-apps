@@ -7,7 +7,7 @@ loki-stack:
   promtail:
     fullnameOverride: promtail
     config:
-      lokiAddress: http://loki-log:3100/loki/api/v1/push
+      lokiAddress: http://loki-log:3100/loki/api/v1/push #TODO - Fix this
   loki:
     fullnameOverride: loki-log
     persistence:
