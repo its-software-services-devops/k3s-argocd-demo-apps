@@ -1,6 +1,7 @@
-prometheus:
+kube-prometheus-stack:
   enabled: true
   fullnameOverride: prometheus
 
   prometheus-node-exporter:
-    hostRootFsMount: false
+    hostRootFsMount:
+      enabled: false
