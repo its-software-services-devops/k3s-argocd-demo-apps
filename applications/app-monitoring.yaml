@@ -17,6 +17,8 @@ spec:
         repoURL: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
         targetRevision: "{{name}}" #Based on environment
         path: 'manifests/monitoring'
+        helm:
+          skipCrds: true
       destination:
         name: in-cluster
         namespace: monitoring
@@ -25,5 +27,4 @@ spec:
           selfHeal: false
           prune: true
         syncOptions:
-          - Replace=true
           - CreateNamespace=true
