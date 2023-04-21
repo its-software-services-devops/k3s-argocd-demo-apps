@@ -11,7 +11,7 @@ promtail:
         - job_name: kubernetes-pods
           pipeline_stages:
             - cri: {}
-            - labels:
+            - static_labels:
                 device: ${DEVICE_ID}
           kubernetes_sd_configs:
             - role: pod
