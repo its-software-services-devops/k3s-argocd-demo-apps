@@ -7,10 +7,14 @@ promtail:
     clients:
       - url: https://475784:${GRAFANA_API_KEY}@logs-prod-011.grafana.net/api/prom/push
     snippets:
-      pipelineStages:
-        - cri: {}
-        - labels:
-            device: ${DEVICE_ID}
+      extraScrapeConfigs: |
+        - job_name: system
+          static_configs:
+            - labels:
+                device: ${DEVICE_ID}
+                __path__: /var/log/*log
+              targets:
+                - localhost
   extraEnv:
     - name: DEVICE_ID
       valueFrom:
