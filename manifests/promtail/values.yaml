@@ -11,6 +11,8 @@ promtail:
         - job_name: kubernetes-pods
           pipeline_stages:
             - cri: {}
+            - labels:
+              device: ${DEVICE_ID}
           kubernetes_sd_configs:
             - role: pod
           relabel_configs:
@@ -78,10 +80,6 @@ promtail:
               - __meta_kubernetes_pod_annotation_kubernetes_io_config_hash
               - __meta_kubernetes_pod_container_name
               target_label: __path__
-          static_configs:
-            - labels:
-                device: ${DEVICE_ID}
-                __path__: /var/log/pods/*/*/*.log
   extraEnv:
     - name: DEVICE_ID
       valueFrom:
