@@ -3,7 +3,7 @@ promtail:
   fullnameOverride: promtail-ext
   extraArgs:
     - "-config.expand-env=true"
-    - "-client.external-labels=hostname=${DEVICE_ID}"
+    - "-client.external-labels=device=$(echo ${DEVICE_ID})"
   config:
     clients:
       - url: https://475784:${GRAFANA_API_KEY}@logs-prod-011.grafana.net/api/prom/push
