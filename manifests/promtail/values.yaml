@@ -12,7 +12,7 @@ promtail:
           static_configs:
             - labels:
                 device: ${DEVICE_ID}
-                __path__: /var/log/*log
+                __path__: /var/log/pods/*/*.log
               targets:
                 - localhost
   extraEnv:
