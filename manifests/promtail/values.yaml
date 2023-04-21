@@ -12,7 +12,7 @@ promtail:
           pipeline_stages:
             - cri: {}
             - labels:
-              device: ${DEVICE_ID}
+                device: ${DEVICE_ID}
           kubernetes_sd_configs:
             - role: pod
           relabel_configs:
