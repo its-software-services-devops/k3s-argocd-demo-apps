@@ -1,5 +1,26 @@
 domain: ''
 
+promtail:
+  enabled: true
+  fullnameOverride: promtail-ext
+  extraArgs:
+    - "-config.expand-env=true"
+    - "-client.external-labels=hostname=${DEVICE_ID}"
+  config:
+    clients:
+      - url: https://475784:${GRAFANA_API_KEY}@logs-prod-011.grafana.net/api/prom/push
+  extraEnv:
+    - name: DEVICE_ID
+      valueFrom:
+        secretKeyRef:
+          name: promtail-credentials
+          key: DEVICE_ID
+    - name: GRAFANA_API_KEY
+      valueFrom:
+        secretKeyRef:
+          name: promtail-credentials
+          key: GRAFANA_API_KEY
+
 loki-stack:
   enabled: true
   test_pod:
