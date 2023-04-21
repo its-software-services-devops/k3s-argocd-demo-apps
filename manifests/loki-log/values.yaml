@@ -20,6 +20,10 @@ loki-stack:
     enabled: true
     fullnameOverride: loki-log-grafana
     envRenderSecret: {}
+    admin:
+      existingSecret: "grafana-credentials"
+      userKey: GRAFANA_USER
+      passwordKey: GRAFANA_PASSWORD
     image:
       tag: 8.5.13
     #grafana.ini:
