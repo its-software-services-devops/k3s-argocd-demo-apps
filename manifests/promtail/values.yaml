@@ -10,7 +10,7 @@ promtail:
       pipelineStages:
         - cri: {}
         - static_labels:
-            device: ${DEVICE_ID}
+            device_id: ${DEVICE_ID}
   extraEnv:
     - name: DEVICE_ID
       valueFrom:
