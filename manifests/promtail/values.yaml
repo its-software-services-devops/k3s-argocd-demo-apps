@@ -5,7 +5,7 @@ promtail:
     - "-config.expand-env=true"
   config:
     clients:
-      - url: https://475784:${GRAFANA_API_KEY}@logs-prod-011.grafana.net/api/prom/push
+      - url: https://${REMOTE_LOKI_USER}:${REMOTE_LOKI_PASSWORD}@${REMOTE_LOKI_HOST}/api/prom/push
     snippets:
       pipelineStages:
         - cri: {}
