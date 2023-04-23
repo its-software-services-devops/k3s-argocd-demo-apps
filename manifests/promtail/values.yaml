@@ -17,8 +17,18 @@ promtail:
         secretKeyRef:
           name: promtail-credentials
           key: DEVICE_ID
-    - name: GRAFANA_API_KEY
+    - name: REMOTE_LOKI_USER
       valueFrom:
         secretKeyRef:
           name: promtail-credentials
-          key: GRAFANA_API_KEY
+          key: REMOTE_LOKI_USER
+    - name: REMOTE_LOKI_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: promtail-credentials
+          key: REMOTE_LOKI_PASSWORD
+    - name: REMOTE_LOKI_HOST
+      valueFrom:
+        secretKeyRef:
+          name: promtail-credentials
+          key: REMOTE_LOKI_HOST
