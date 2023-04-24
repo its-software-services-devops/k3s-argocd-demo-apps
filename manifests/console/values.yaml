@@ -2,3 +2,8 @@ ssh:
   image:
     name: lscr.io/linuxserver/openssh-server
     version: latest # Will change to immutable label 
+
+proxy:
+  image:
+    name: barneybuffet/tor
+    version: latest # Will change to immutable label 

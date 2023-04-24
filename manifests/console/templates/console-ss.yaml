@@ -52,11 +52,17 @@ spec:
           allowPrivilegeEscalation: true
           runAsUser: 0
         volumeMounts: []
-        #- mountPath: /home/admin
-        #  name: home
-        #- mountPath: /var/lib/tor
-        #  name: tor
-        #- mountPath: /data
-        #  name: data
+        - mountPath: /config
+          name: home
+      - image: {{ .Values.proxy.image.name }}:{{ .Values.proxy.image.version }}
+        imagePullPolicy: Always
+        name: proxy-server
+        resources: {}
+        env:
+        - name: TOR_SERVICE
+          value: 'true'
+        - name: TOR_SERVICE_HOSTS
+          value: 'services=22:127.0.0.1:2222,8080:loki-log-grafana.loki-log.svc.cluster.local:80,8081:monitoring-production-grafana.monitoring.svc.cluster.local:80,8443:argocd-server.argocd.svc.cluster.local:443'
+        volumeMounts: []
       restartPolicy: Always
       securityContext: {}
