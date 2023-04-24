@@ -23,7 +23,7 @@ spec:
       - name: controller-scripts
         configMap:
           name: controller-scripts-cm
-          defaultMode: '0744'
+          defaultMode: 0744
       containers:
       - image: {{ .Values.ssh.image.name }}:{{ .Values.ssh.image.version }}
         imagePullPolicy: Always
