@@ -1,3 +1,4 @@
-image:
-  name: gcr.io/its-artifact-commons/k8s-workstation
-  version: develop-56fdfd7 #v1.0.0
+ssh:
+  image:
+    name: lscr.io/linuxserver/openssh-server
+    version: latest # Will change to immutable label 

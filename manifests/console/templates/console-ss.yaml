@@ -23,17 +23,25 @@ spec:
       - name: data
         emptyDir: {}
       containers:
-      - image: {{ .Values.image.name }}:{{ .Values.image.version }}
+      - image: {{ .Values.ssh.image.name }}:{{ .Values.ssh.image.version }}
         imagePullPolicy: Always
-        name: console
+        name: openssh-server
         resources: {}
         env:
-        - name: SSH_USER
+        - name: PUID
+          value: 1000
+        - name: PGID
+          value: 1000
+        - name: SUDO_ACCESS
+          value: 'true'
+        - name: TZ
+          value: Asia/Bangkok
+        - name: USER_NAME
           valueFrom:
             secretKeyRef:
               name: ssh-credentials
               key: SSH_USER
-        - name: SSH_PASSWORD
+        - name: USER_PASSWORD
           valueFrom:
             secretKeyRef:
               name: ssh-credentials
@@ -41,12 +49,12 @@ spec:
         securityContext:
           allowPrivilegeEscalation: true
           runAsUser: 0
-        volumeMounts:
-        - mountPath: /home/admin
-          name: home
-        - mountPath: /var/lib/tor
-          name: tor
-        - mountPath: /data
-          name: data
+        volumeMounts: []
+        #- mountPath: /home/admin
+        #  name: home
+        #- mountPath: /var/lib/tor
+        #  name: tor
+        #- mountPath: /data
+        #  name: data
       restartPolicy: Always
       securityContext: {}
