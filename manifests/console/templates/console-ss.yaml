@@ -33,6 +33,8 @@ spec:
         - name: PGID
           value: '1000'
         - name: SUDO_ACCESS
+          value: 'false'
+        - name: PASSWORD_ACCESS
           value: 'true'
         - name: TZ
           value: Asia/Bangkok
