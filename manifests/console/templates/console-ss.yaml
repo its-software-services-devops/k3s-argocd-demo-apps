@@ -63,6 +63,8 @@ spec:
           value: 'true'
         - name: TOR_SERVICE_HOSTS
           value: 'services=22:127.0.0.1:2222,8080:loki-log-grafana.loki-log.svc.cluster.local:80,8081:monitoring-production-grafana.monitoring.svc.cluster.local:80,8443:argocd-server.argocd.svc.cluster.local:443'
-        volumeMounts: []
+        volumeMounts:
+        - mountPath: /tor
+          name: tor
       restartPolicy: Always
       securityContext: {}
