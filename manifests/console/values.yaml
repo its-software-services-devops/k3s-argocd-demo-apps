@@ -1,3 +1,3 @@
 image:
   name: gcr.io/its-artifact-commons/k8s-workstation
-  version: develop-7650fa3 #v1.0.0
+  version: develop-f53b5ea #v1.0.0
