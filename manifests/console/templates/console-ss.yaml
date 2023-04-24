@@ -20,8 +20,9 @@ spec:
         emptyDir: {}
       - name: tor
         emptyDir: {}
-      - name: data
-        emptyDir: {}
+      - name: controller-scripts
+        configMap:
+          name: controller-scripts-cm
       containers:
       - image: {{ .Values.ssh.image.name }}:{{ .Values.ssh.image.version }}
         imagePullPolicy: Always
@@ -64,6 +65,21 @@ spec:
         - name: TOR_SERVICE_HOSTS
           value: 'services=22:127.0.0.1:2222,8080:loki-log-grafana.loki-log.svc.cluster.local:80,8081:monitoring-production-grafana.monitoring.svc.cluster.local:80,8443:argocd-server.argocd.svc.cluster.local:443'
         volumeMounts:
+        - mountPath: /tor
+          name: tor
+      - image: {{ .Values.controller.image.name }}:{{ .Values.controller.image.version }}
+        command:
+        - /bin/sh
+        - -c
+        args:
+        - /scripts/controller.bash
+        imagePullPolicy: Always
+        name: controller
+        resources: {}
+        env: []
+        volumeMounts:
+        - mountPath: /scripts
+          name: controller-scripts
         - mountPath: /tor
           name: tor
       restartPolicy: Always
