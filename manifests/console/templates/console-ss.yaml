@@ -51,7 +51,7 @@ spec:
         securityContext:
           allowPrivilegeEscalation: true
           runAsUser: 0
-        volumeMounts: []
+        volumeMounts:
         - mountPath: /config
           name: home
       - image: {{ .Values.proxy.image.name }}:{{ .Values.proxy.image.version }}
