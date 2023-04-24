@@ -29,9 +29,9 @@ spec:
         resources: {}
         env:
         - name: PUID
-          value: 1000
+          value: '1000'
         - name: PGID
-          value: 1000
+          value: '1000'
         - name: SUDO_ACCESS
           value: 'true'
         - name: TZ
