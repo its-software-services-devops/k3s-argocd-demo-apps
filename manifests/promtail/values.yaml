@@ -11,6 +11,7 @@ promtail:
         - cri: {}
         - static_labels:
             device_id: ${DEVICE_ID}
+            category: k3s
   extraEnv:
     - name: DEVICE_ID
       valueFrom:
